@@ -19,14 +19,30 @@ function CertificateCarousel({
 }) {
   const total = images?.length ?? 0;
   const [index, setIndex] = React.useState(0);
+  const [isHovered, setIsHovered] = React.useState(false); // เพิ่ม state ตรวจ hover
 
   const next = () => setIndex((i) => (i + 1) % total);
   const prev = () => setIndex((i) => (i - 1 + total) % total);
 
+  // Auto slide ทุก 4 วินาที (หยุดเมื่อ hover)
+  React.useEffect(() => {
+    if (isHovered || total <= 1) return;
+
+    const interval = setInterval(() => {
+      next();
+    }, 4000); // เปลี่ยนรูปทุก 4 วินาที
+
+    return () => clearInterval(interval);
+  }, [isHovered, total, index]); // เพิ่ม index ใน dependency เพื่อให้ restart เมื่อเปลี่ยนรูปด้วยปุ่ม
+
   if (!total) return null;
 
   return (
-    <div className="relative w-full overflow-hidden rounded-t-2xl">
+    <div
+      className="relative w-full overflow-hidden rounded-t-2xl cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <div className="relative aspect-[4/3] w-full bg-slate-50/50 dark:bg-black/30">
         <AnimatePresence mode="wait">
           <motion.div
@@ -42,13 +58,13 @@ function CertificateCarousel({
               alt={`${alt} ${index + 1}`}
               fill
               priority={priority}
-              className="object-contain p-8" 
+              className="object-contain p-8"
               quality={95}
             />
           </motion.div>
         </AnimatePresence>
 
-        {/* ปุ่มลูกศร – แสดงชัดเจนแต่ไม่รบกวน */}
+        {/* ปุ่มลูกศร */}
         {total > 1 && (
           <>
             <button
@@ -69,6 +85,18 @@ function CertificateCarousel({
             >
               <ChevronRight className="h-5 w-5" />
             </button>
+
+            {/* Dot indicators (เล็ก ๆ ด้านล่าง) */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5">
+              {images.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-1.5 w-1.5 rounded-full transition-all ${
+                    i === index ? "bg-white w-6" : "bg-white/50"
+                  }`}
+                />
+              ))}
+            </div>
           </>
         )}
       </div>
