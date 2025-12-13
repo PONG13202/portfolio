@@ -1,65 +1,103 @@
 import Image from "next/image";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Section from "./components/Section";
+import Experience from "./components/Experience";
+import Projects from "./components/Project";
+import Skills from "./components/Skill";
+import Contact from "./components/Contact";
+import PersonalProjects from "./components/PersonalProjects";
+import { profile } from "./lib/content";
+import Certificate from "./components/Certificate";
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <Navbar />
+      <main className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
+        <Hero />
+
+        <div className="mt-14 space-y-14">
+          <Certificate />
+          
+<Section id="about" title="About Me" subtitle="Personal Information">
+  <div
+    className="rounded-3xl border border-black/10 bg-gradient-to-b from-white to-slate-50/40
+               p-8 shadow-sm sm:p-10
+               dark:border-white/10 dark:from-black dark:to-white/5"
+  >
+    <h3 className="mb-8 text-2xl font-semibold tracking-tight text-black dark:text-white">
+      Education
+    </h3>
+
+    <div className="space-y-8">
+      {profile.education.map((edu, idx) => (
+        <div
+          key={idx}
+          className="flex items-start gap-6 rounded-2xl border border-black/10 bg-white/70 p-6
+                     backdrop-blur-sm transition hover:shadow-md
+                     dark:border-white/10 dark:bg-black/30"
+        >
+          {/* Logo */}
+          {edu.logo && (
+            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm dark:border-white/10 dark:bg-black">
+              <Image
+                src={edu.logo}
+                alt={`${edu.school} logo`}
+                fill
+                className="object-contain p-2"
+              />
+            </div>
+          )}
+
+          {/* Details */}
+          <div className="min-w-0 flex-1">
+            <p className="text-lg font-semibold text-black dark:text-white">
+              {edu.school} {edu.campus && `${edu.campus}`}
+            </p>
+
+            {edu.department && (
+              <p className="mt-1 text-slate-700 dark:text-slate-300">
+                {edu.department}
+              </p>
+            )}
+
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
+              {edu.program}
+            </p>
+
+            <div className="mt-3 flex flex-wrap gap-6 text-sm">
+              <span className="text-slate-500 dark:text-slate-500">
+                Year: <span className="font-medium text-slate-700 dark:text-slate-300">{edu.year}</span>
+              </span>
+
+              {edu.gpa && (
+                <span className="text-slate-500 dark:text-slate-500">
+                  GPA:{" "}
+                  <span className="font-semibold text-black dark:text-white">
+                    {edu.gpa}
+                  </span>
+                </span>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      ))}
     </div>
+  </div>
+</Section>
+
+          <Skills />
+          <Experience />
+          <Projects />
+          <PersonalProjects />
+          <Contact />
+        </div>
+
+        <footer className="mt-16 border-t border-slate-200 pt-8 text-sm text-slate-500 dark:border-white/10 dark:text-slate-400">
+          © {new Date().getFullYear()} {profile.name}. All rights reserved.
+        </footer>
+      </main>
+    </>
   );
 }
