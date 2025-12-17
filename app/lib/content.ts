@@ -158,9 +158,9 @@ export const personalProjects = [
   tags: ["MongoDB", "Express", "React", "Node.js", "TypeScript", "Next.js", "Tailwind"],
   href: "https://github.com/stars/PONG13202/lists/mobile-shop-management-system",
   images: [
-    "/MOb/1.png",
-    "/MOb/2.png",
-    "/MOb/3.png",
+    "/Mob/1.png",
+    "/Mob/2.png",
+    "/Mob/3.png",
   ],
   imageAlt: "Mobile Shop MERN System preview",
 },
