@@ -18,7 +18,7 @@ export default function Hero() {
           {/* TOP: รูป + ข้อความ */}
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             {/* 1. ย้ายรูปมาไว้ใน Flex Container เพื่อการจัดวางที่สวยงาม (หรือจะไว้ที่เดิมก็ได้) */}
-            <div className="order-first sm:order-last shrink-0">
+            <div className="order-first shrink-0">
                <div
                 className="relative h-36 w-36 overflow-hidden rounded-full border border-black/10 bg-white
                            shadow-sm dark:border-white/10 dark:bg-black sm:h-44 sm:w-44"
@@ -39,7 +39,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-sm text-slate-600 dark:text-slate-300 pt-2"
               >
-                 {profile.role}
+                 {/* {profile.role} */}
               </motion.p>
 
               <motion.h1
@@ -104,7 +104,7 @@ export default function Hero() {
               <span className="font-medium text-slate-900 dark:text-white"> {/* ✅ แก้ให้ชื่อมหาลัยเป็นสีขาว */}
                 {profile.education[0].school} {profile.education[0].campus}
               </span>{" "}
-              I’m currently seeking opportunities as a Web Developer, with strong interest in Full Stack, Back-end, and Front-end development.
+              I’m currently seeking opportunities as a Web Developer, with strong interest in Full Stack Development, Back-End development and Front-End development.
             </p>
           </div>
         </div>

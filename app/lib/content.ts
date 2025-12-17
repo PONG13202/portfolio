@@ -1,6 +1,6 @@
 export const profile = {
   name: "Chanathip Puapanwong",
-  role: "Junior Web Developer",
+  // role: "Junior Web Developer",
   location: "Hua Hin, Thailand",
   email: "chanathip.ppw@gmail.com",
 
@@ -193,16 +193,24 @@ export const certificates = [
 
 export const skills = [
   "Node.js",
-  "Bun",
-  "PHP",
   "TypeScript",
   "Javascript",
+  "BUN",
+  "PHP",
+  "SQL",
   "Next.js",
   "React.js",
-  "Express.js",
+  "Elysia",
+  "Express",
+  "REST API",
+  "HTML / CSS",
   "Tailwind CSS",
   "Bootstrap 5",
-  "PostgreSQL / MySQL",
-  "Git / GitHub",
+  "PostgreSQL",
+  "MySQL",
+  "Git & GitHub",
   "Docker",
+  "Postman",
+  "Basic VPS (Linux)",
+  "Vercel"
 ];
