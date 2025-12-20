@@ -29,7 +29,7 @@ export const profile = {
     github: "https://github.com/PONG13202",
     Facebook: "https://www.facebook.com/chanathip.puapanwong?locale=th_TH",
     // Telephone: "097-235-1715",
-    resume: "/resume.pdf",
+    resume: "/Resume-Chanathip.pdf",
   },
 };
 
